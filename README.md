@@ -1,3 +1,5 @@
-# SortBasic
+#SortBasic
 
-using pip install tkinter to make gui interface
+Modules used : time, random tkinter 
+
+Main sorting algo: BubbleSort
