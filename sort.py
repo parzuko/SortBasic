@@ -2,6 +2,18 @@ from tkinter import *
 from tkinter import ttk
 import random
 from bubblesort import bubble_sort
+import mysql.connector as sql 
+
+mydb = sql.connect(
+    host = "localhost",
+    user = "root",
+    passwd = "12345",
+    database = "sortingapp",
+    auth_plugin = "mysql_native_password"
+)
+
+cursor = mydb.cursor()
+
 
 root = Tk()
 root.title("Sorting Visualiser")
@@ -40,7 +52,10 @@ def generate():
     minVal = int(minEntry.get())
     maxVal= int(maxEntry.get())
     size = int(sizeEntry.get())
-    
+
+    cursor.execute(f"INSERT INTO Sort VALUES({minVal},{maxVal},{size})") 
+    mydb.commit()
+
     data = []
     for _ in range(size):
         data.append(random.randrange(minVal,maxVal +1))
@@ -82,6 +97,10 @@ maxEntry.grid(row=1,column=2,padx=5,pady=5)
 
 Button(UI_frame,text="Generate", command = generate,bg='white').grid(row=1,column=3,padx=5,pady=5)
 
+cursor.execute(f"SELECT minVal, maxVal, size FROM Sort")
+result = cursor.fetchall()
+response = result[0][0]
 
+print(f"Previously used data is : {response}")
 
 root.mainloop()
