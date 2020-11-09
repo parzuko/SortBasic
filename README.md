@@ -1,5 +1,7 @@
-#SortBasic
+# SortBasic
 
-Modules used : time, random tkinter 
+Basic Sorting Visualizer using Tkinter
 
-Main sorting algo: BubbleSort
+- [x] Bubble Sort
+- [x] SQL Connector
+- [ ] Quick Sort
