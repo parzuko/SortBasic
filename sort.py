@@ -12,7 +12,7 @@ root.config(bg='black')
 selected_alg= StringVar()
 data = []
 
-def drawData(data,colorArray):
+def draw_data(data,colorArray):
     canvas.delete("all")
     c_height = 380
     c_width = 600
@@ -34,7 +34,7 @@ def drawData(data,colorArray):
 
     root.update_idletasks()
 
-def Generate():
+def generate():
     global data 
 
     minVal = int(minEntry.get())
@@ -45,11 +45,11 @@ def Generate():
     for _ in range(size):
         data.append(random.randrange(minVal,maxVal +1))
 
-    drawData(data,['red' for x in range (len(data))])
+    draw_data(data,['red' for x in range (len(data))])
 
-def StartAlgorithim():
+def start_algorithim():
     global data 
-    bubble_sort(data, drawData,speedScale.get())
+    bubble_sort(data, draw_data,speedScale.get())
 
 UI_frame= Frame(root,width =600,height=200,bg="grey")
 UI_frame.grid(row=0, column = 0, padx = 10, pady =5)
@@ -66,7 +66,7 @@ algMenu.current(0)
 speedScale = Scale(UI_frame, from_= 0.1, to=2.0,length=200,digits=2,resolution=0.2,orient=HORIZONTAL, label="Select Speed [s]")
 speedScale.grid(row=0,column = 2,padx=5,pady=5)
 
-Button(UI_frame,text="Start", command = StartAlgorithim,bg='red').grid(row=0,column=3,padx=5,pady=5)
+Button(UI_frame,text="Start", command = start_algorithim,bg='red').grid(row=0,column=3,padx=5,pady=5)
 
 
 sizeEntry = Scale(UI_frame, from_= 3, to=25,resolution=1,orient=HORIZONTAL, label="Data Size")
@@ -80,7 +80,7 @@ maxEntry = Scale(UI_frame, from_= 10, to=100,resolution=1,orient=HORIZONTAL , la
 maxEntry.grid(row=1,column=2,padx=5,pady=5)
 
 
-Button(UI_frame,text="Generate", command = Generate,bg='white').grid(row=1,column=3,padx=5,pady=5)
+Button(UI_frame,text="Generate", command = generate,bg='white').grid(row=1,column=3,padx=5,pady=5)
 
 
 
